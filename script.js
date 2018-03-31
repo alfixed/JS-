@@ -1,56 +1,56 @@
-    'use strict';
-    
-    //Example 1 - generators
-    function* generateFoo() {
-      yield 1;
-      yield 2;
-      return 3;
-    }
-    
-    let generator = generateFoo();
-    let one = generator.next();
-    
-    console.log(JSON.stringify(one)); //{"value":1,"done":false}
-    
-    generator.next();
-    let second = generator.next();
-    
-    console.log(JSON.stringify(second)); //{"value":3,"done":true}
-    
-    //Expamle 2 - class
-    class Hello{
+'use strict';
 
-      constructor(name) {
-        this.name = name;
-      }
-    
-      sayHi() {
-        console.log(`Hello, ${this.name}`);
-      }
-    
-    }
-    
-    let hello = new Hello("Vasilii");
-    hello.sayHi();
-    
-    //Example 3 - super
-    'use strict';
+let place;
+let playerOne = [[0,0],[0,1],[1,0]];
+let playerTwo = [...playerOne];
 
-    class Human {
-      constructor(name) {
-        this.name = name;
-      }
-    
-      walk() {
-        console.log("I walk to work: " + this.name);
+playerTwo.forEach(function(element, index, arr){
+  let tmpIndex = index;
+  element.forEach(function(element, index, arr){
+    if(tmpIndex === 0){
+      arr[index] = 1;
+    }
+    else{
+      if(arr[index] !== 0){
+        arr[index] += 1;
       }
     }
-    
-    class Developer extends Human {
-      walk() {
-        super.walk();
-        console.log("...and write code!");
-      }
+  });
+});
+
+function createPlace(...arg){
+  place = arg;
+}
+
+createPlace(0,0,0);
+
+function initPlace(arg){
+  arg.map(function(element, index, arr) {
+    arr[index] = [-1,-1,-1];
+  });
+  
+  arg.forEach(function(element){
+  element.forEach(function(element){
+    if(element !== -1){
+      console.log('Initialization error for game');
     }
-    
-    new Developer("Artur").walk();
+  });
+});
+}
+
+initPlace(place);
+
+for(let i = 0; i < playerOne.length; i++){
+  place[playerOne[i][0]][playerOne[i][1]] = 1;
+  place[playerTwo[i][0]][playerTwo[i][1]] = 0;
+}
+
+const metadata = {
+  title: 'Winner',
+  playerOne: 'playerOne',
+  playerTwo: 'playerTwo'
+
+};
+const {title, playerTwo: winner} = metadata;
+
+setTimeout(console.log(`${title} ${winner}`), 1000);
