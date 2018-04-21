@@ -7,20 +7,23 @@ function MyButtonAlaReactConstructor(name) {
           buttonClick: this.handleClick
       }
     }
-    this.handleClick2 = () => {
-        console.log('Example 2:' + this.name);
-      }
+
+    // Этот вариант особо от первого не отличается, та же Arrow функция, только не возвращает ничего
+    // Тут лучше например сделать такой вариант
+    this.handleClick2 = function () {
+      console.log('Example 2:' + this.name);
+    }
     this.render2 = function () {
       return {
           type: 'button',
-          buttonClick: this.handleClick2
+          buttonClick: () => this.handleClick2()
       }
     }
+
+    // Это хороший вариант с bind.this, но setTimeout, тут не нужен
     this.handleClick3 = function() {
-        setTimeout(() => {
-          console.log('Example 3:', this.name);
-        }, 1000);
-      }.bind(this)
+      console.log('Example 3:' + this.name);
+    }.bind(this)
     this.render3 = function () {
       return {
           type: 'button',
