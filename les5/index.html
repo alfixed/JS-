@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>4. ES6 Classes</title>
+    <!-- Bootstrap -->
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+  </head>
+  <body>
+    <div class="container theme-showcase" role="main">  
+    <div class="jumbotron">
+        <h1>Приложение для пассажиров</h1>
+    </div> 
+    
+        <div class="col-md-6">
+            <p>
+                <button type="button" class="btn btn-lg btn-primary" id="WayPoints">Показать расписание</button>
+            </p>
+            <p id="schedule"></p>
+        </div>
+        <div class="col-md-6">
+            <div class="col-md-6">
+                <input type="time" id="inputTime" class="form-control" placeholder="Текущее время" required="" autofocus="">
+            </div>
+            <div class="col-md-6">
+                <input type="text" id="inputPoint" class="form-control" placeholder="Название остановки" required="" autofocus="">
+            </div>  
+            <div class="col-md-12 btn">
+                <button type="button" class="btn btn-lg btn-success" id="NextBus">Расчитать время прибытия автобуса</button>
+            </div>
+            <div class="col-md-12">
+                <p id="calculation"></p>
+            </div>
+        </div>
+    </div>  
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <!-- Include all compiled plugins (below), or include individual files as needed -->
+    <script src="js/bootstrap.min.js"></script>
+    <script src="classes.js"></script>
+  </body>
+</html>
