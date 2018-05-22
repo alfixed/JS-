@@ -1,84 +1,34 @@
-const { readFile } = require('fs');
+const { readFile, readFileSync } = require('fs');
 
-
-
-
-
-function tmpSync(){
-  const p1 = new Promise(
-    (resolve, reject) => {
-      readFile('test1.json', { encoding: 'utf8' },
-        (error, data) => {
-          if (error) {
-            reject(error);
-          } else {
-            resolve(data);
-          }
-        });
-    });
-  
-  const p2 = new Promise(
-    (resolve, reject) => {
-      readFile('test2.json', { encoding: 'utf8' },
-        (error, data) => {
-          if (error) {
-            reject(error);
-          } else {
-            resolve(data);
-          }
-        });
-    });
-  
-  const p3 = new Promise(
-    (resolve, reject) => {
-      readFile('test3.json', { encoding: 'utf8' },
-        (error, data) => {
-          if (error) {
-            reject(error);
-          } else {
-            resolve(data);
-          }
-        });
-    });
-    
-  p1.then(text => {
-    return p2;
-  })
-  .then(text => {
-    return p3;
-  })
-  .then(text => {})
-  .catch(error => {console.log(error);});
+function tmpSync() {
+  const content1 = readFileSync('test1.json', 'utf-8');
+  const content2 = readFileSync('test2.json', 'utf-8');
+  const content3 = readFileSync('test3.json', 'utf-8');
 }
 
-function tmpAsync(){
-  function loadFileAsync(fileName) {
-    return new Promise(
-      (resolve, reject) => {
-        readFile(fileName, { encoding: 'utf8' },
-          (error, data) => {
-            if (error) {
-              reject(error);
-            } else {
-              resolve(data);
-            }
-          });
-      });
+function createReadAsyncWithBenchmark(numberOfFiles) {
+  const start = Date.now();
+  let leftFiles = numberOfFiles;
+  return (fileName) => {
+    readFile(fileName,'utf8', (error, text) => {
+      if (!error) {
+        leftFiles--;
+        if (leftFiles === 0) {
+        }
+      } else {
+        console.log('error...', error);
+      }
+    })
   }
-
-  loadFileAsync('test1.json')
-  .then(result1 => {
-
-    return loadFileAsync('test2.json');
-  })
-  .then(result2 => {
-    return loadFileAsync('test3.json');
-  })
-  .then(result3 => {})
-  .catch(error => {
-      console.log(error);
-  })
 }
+
+function tmpAsync() {
+  const readAsync = createReadAsyncWithBenchmark(3);
+  readAsync('test1.json');
+  readAsync('test2.json');
+  readAsync('test3.json');
+}
+
 function bench(f) {
   var date = new Date();
   for (var i = 0; i < 1000; i++) f();
