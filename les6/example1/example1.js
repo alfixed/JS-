@@ -6,30 +6,33 @@ function tmpSync() {
   const content3 = readFileSync('test3.json', 'utf-8');
 }
 let DateEnd;
-function createReadAsyncWithBenchmark(numberOfFiles) {
-  let leftFiles = numberOfFiles;
-  return (fileName, i) => {
-    readFile(fileName,'utf8', (error, text) => {
-      if (!error) {
-        leftFiles--;
-        if (leftFiles === 0) {
-          if(i == 999){
+function createReadAsyncWithBenchmark(filesArray, numberOfCalls) {
+  let DateStart = new Date();
+  let numberOfFiles = filesArray.length;
+  let leftFiles = numberOfFiles * numberOfCalls;
+  return () => {
+    for (var i = 0; i < numberOfCalls; i++) {
+      for (var j=0; j < numberOfFiles; j++) {
+        readFile(filesArray[j],'utf8', (error, text) => {
+          if (!error) {
+            leftFiles--;
+            if (leftFiles === 0) {
+              DateEnd = new Date();
+              console.log('Время асинхронного чтения: ' + (DateEnd - DateStart) + 'мс');
+            }
+          } else {
+            console.log('error...', error);
             DateEnd = new Date();
           }
-        }
-      } else {
-        console.log('error...', error);
-        DateEnd = new Date();
+        })
       }
-    })
+    }
   }
 }
 
 function tmpAsync(i) {
-  const readAsync = createReadAsyncWithBenchmark(3);
-  readAsync('test1.json', i);
-  readAsync('test2.json', i);
-  readAsync('test3.json', i);
+  const readAsync = createReadAsyncWithBenchmark(['test1.json', 'test2.json', 'test3.json'], i);
+  readAsync();
 }
 
 function benchSync(f) {
@@ -39,17 +42,7 @@ function benchSync(f) {
 }
 
 function benchAsync(f) {
-  let DateStart = new Date();
-   for (let i = 0; i < 1000; i++) {
-      f(i);
-   }
-
-  var timerId = setInterval(function() {
-    if (DateEnd) {
-      clearInterval(timerId);
-      console.log('Время асинхронного чтения: ' + (DateEnd - DateStart) + 'мс');
-    }
-  }, 100);
+  f(1000);
 }
 
 console.log( 'Время синхронного чтения: ' + benchSync(tmpSync) + 'мс' );
