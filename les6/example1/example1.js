@@ -5,29 +5,29 @@ function tmpSync() {
   const content2 = readFileSync('test2.json', 'utf-8');
   const content3 = readFileSync('test3.json', 'utf-8');
 }
-let DateEnd;
+let dateEnd;
 function createReadAsyncWithBenchmark(filesArray, numberOfCalls) {
-  let DateStart = new Date();
+  let dateStart = new Date();
   let numberOfFiles = filesArray.length;
   let leftFiles = numberOfFiles * numberOfCalls;
-  return () => {
-    for (var i = 0; i < numberOfCalls; i++) {
-      for (var j=0; j < numberOfFiles; j++) {
-        readFile(filesArray[j],'utf8', (error, text) => {
-          if (!error) {
-            leftFiles--;
-            if (leftFiles === 0) {
-              DateEnd = new Date();
-              console.log('Время асинхронного чтения: ' + (DateEnd - DateStart) + 'мс');
+    return () => {
+      for (var i = 0; i < numberOfCalls; i++) {
+        for (var j=0; j < numberOfFiles; j++) {
+          readFile(filesArray[j],'utf8', (error, text) => {
+            if (!error) {
+              leftFiles--;
+              if (leftFiles === 0) {
+                dateEnd = new Date();
+                console.log('Время асинхронного чтения: ' + (dateEnd - dateStart) + 'мс');
+              }
+            } else {
+              console.log('error...', error);
+               dateEnd = new Date();
             }
-          } else {
-            console.log('error...', error);
-            DateEnd = new Date();
-          }
-        })
-      }
+          })
+        }
+        }
     }
-  }
 }
 
 function tmpAsync(i) {
