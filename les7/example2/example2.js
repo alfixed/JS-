@@ -12,7 +12,13 @@ function httpGet(url) {
     });
 }
 
-httpGet('https://nodejs.org/api/http.html')
+async function foo() {
+  const res = await httpGet('https://nodejs.org/api/http.html');
+  console.log(res);
+  return res;
+}
+
+foo()
 .then((value) => {
   console.log('Contents: ' + value);
 })
