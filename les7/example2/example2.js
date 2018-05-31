@@ -13,7 +13,7 @@ function httpGet(url) {
 }
 
 async function foo() {
-  const res = await httpGet('https://nodejs.org/api/http.html');
+  const res = await httpGet('http://nodejs.org/dist/index.json');
   console.log(res);
   return res;
 }
@@ -25,4 +25,3 @@ foo()
 .catch((reason) => {
   console.error('Something went wrong', reason);
 });
-

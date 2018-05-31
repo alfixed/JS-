@@ -1,14 +1,9 @@
 const fetch = require('node-fetch');
 
 async function fetchJson(url) {
-  try {
-    let request = await fetch(url);
-    let text = await request.text();
-    return JSON.parse(text);
-  }
-  catch (error) {
-    console.log(`ERROR: ${error.stack}`);
-  }
+  let request = await fetch(url);
+  let text = await request.text();
+  return JSON.parse(text);
 }
 
 function successful(){
@@ -18,7 +13,8 @@ function successful(){
     fetchJson('https://jsonplaceholder.typicode.com/users/3')
   ]).then(value => { 
     console.log(value);
-  }, reason => {
+  })
+  .catch((reason) => {
     console.log(`error successful: ${reason}`);
   });
 }
@@ -30,7 +26,8 @@ function unsuccessful(){
     fetchJson('https://jsonplaceholder.tyicode.com/users/3')
   ]).then(value => { 
     console.log(value);
-  }, reason => {
+  })
+  .catch((reason) => {
     console.log(`error unsuccessful: ${reason}`);
   });
 }

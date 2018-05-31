@@ -1,13 +1,13 @@
 {
-  "name": "les6",
-  "version": "1.0.0",
+  "name": "les7",
+  "version": "1.0.1",
   "description": "",
-  "main": "index.js",
+  "main": "",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "author": "",
-  "license": "ISC",
+  "author": "Aleksei Fedosimov",
+  "license": "MIT",
   "dependencies": {
     "node-fetch": "^2.1.2",
     "request": "^2.85.0",

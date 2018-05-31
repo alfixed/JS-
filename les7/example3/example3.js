@@ -30,3 +30,4 @@ fetchJson('https://jsonplaceholder.typicode.com/users/1')
 	.catch((error) => {
 		console.log(`error: ${error}`);
 	})
+	
