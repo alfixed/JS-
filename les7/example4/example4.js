@@ -11,7 +11,8 @@ function successful(){
     fetchJson('https://jsonplaceholder.typicode.com/users/1'),
     fetchJson('https://jsonplaceholder.typicode.com/users/2'),
     fetchJson('https://jsonplaceholder.typicode.com/users/3')
-  ]).then(value => { 
+  ])
+  .then(value => { 
     console.log(value);
   })
   .catch((reason) => {
@@ -24,7 +25,8 @@ function unsuccessful(){
     fetchJson('https://jsonplaceholder.typicode.com1/users/1'),
     fetchJson('https://jsonplaceholder.typicode.com/users/2'),
     fetchJson('https://jsonplaceholder.tyicode.com/users/3')
-  ]).then(value => { 
+  ])
+  .then(value => { 
     console.log(value);
   })
   .catch((reason) => {
