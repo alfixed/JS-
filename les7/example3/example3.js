@@ -7,7 +7,7 @@ async function fetchJson(url) {
     return JSON.parse(text);
   }
   catch (error) {
-    console.log(`ERROR: ${error.stack}`);
+    return Promise.reject(error);
   }
 }
 
@@ -30,4 +30,3 @@ fetchJson('https://jsonplaceholder.typicode.com/users/1')
 	.catch((error) => {
 		console.log(`error: ${error}`);
 	})
-	
