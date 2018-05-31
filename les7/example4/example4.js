@@ -21,7 +21,7 @@ function successful(){
 
 function unsuccessful(){
   Promise.all([
-    fetchJson('https://jsonplaceholder.typicode.com/users1/1'),
+    fetchJson('https://jsonplaceholder.typicode.com1/users/1'),
     fetchJson('https://jsonplaceholder.typicode.com/users/2'),
     fetchJson('https://jsonplaceholder.tyicode.com/users/3')
   ]).then(value => { 
