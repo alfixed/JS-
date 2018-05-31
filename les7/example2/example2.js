@@ -12,13 +12,13 @@ function httpGet(url) {
     });
 }
 
-async function foo() {
+async function httpGetAsync() {
   const res = await httpGet('http://nodejs.org/dist/index.json');
   console.log(res);
   return res;
 }
 
-foo()
+httpGetAsync()
 .then((value) => {
   console.log('Contents: ' + value);
 })
