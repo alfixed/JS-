@@ -20,7 +20,6 @@
   "homepage": "https://github.com/alfixed/JS-in-the-kitchen-of-Michael#readme",
   "dependencies": {
     "alfixedfib": "^1.0.0",
-    "alfixedfibamd": "^1.0.0",
-    "alfixedfibes6": "^1.0.1"
+    "alfixedfibamd": "^1.0.0"
   }
 }
