@@ -4,10 +4,7 @@
   "description": "Task: Клиент. Выбрать две фичи из ES Next и настроить трансформацию через плагины для того чтобы эти фичи работали в последней версии хрома.",
   "main": "index.js",
   "scripts": {
-    "build-lib": "babel ./lib --out-dir .build/lib/",
-    "build-babel": "rimraf .build/ && npm run build-lib && babel ./client --out-dir .build/client/ --copy-files",
-    "build-webpack": "rimraf .build2/ && webpack --config webpack.config.js --mode development",
-    "build-webpack-babel": "npm run build-babel && rimraf .build2/ && webpack --config webpack2.config.js --mode development"
+    "build-webpack": "rimraf .build/ && webpack --config webpack.config.js --mode development"
   },
   "author": "alfixed",
   "license": "MIT",

@@ -4,9 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "build": "rimraf .build/",
-    "build-server": "npm run build && babel ./server --out-dir .build/server/",
-    "start": "npm run build-server && node .build/server/server"
+    "server": "rimraf .build/ && babel ./server --out-dir .build/server/",
+    "start": "npm run server && node .build/server/server"
   },
   "author": "",
   "license": "ISC",

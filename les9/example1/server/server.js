@@ -20,7 +20,7 @@ let myBork = new Bork;
 console.log(myBork.__proto__.boundFunction); // > undefined
 
 //Bound functions are bound to the class instance.
-console.log(myBork.boundFunction.call(undefined)); // > "bork"
+console.log(myBork.boundFunction()) // > "bork"
 
 //Static function exists on the class.
 console.log(Bork.staticFunction()); // > "babelIsCool"

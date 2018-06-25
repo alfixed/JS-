@@ -2,5 +2,5 @@ Task: Клиент. Выбрать две фичи из ES Next и настро�
 
 Use:
 npm i
-npm run build-webpack-babel
-open ./les9/example4/.build2/index.html
+npm run build-webpack
+open ./les9/example4/.build/index.html

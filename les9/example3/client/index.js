@@ -3,8 +3,7 @@ function getClass(){
   class C {
     x = 'x';
   }
-  document.getElementById("class").innerHTML = 'sucsses';
-  return new C().x === 'x';
+  document.getElementById("class").innerHTML =  (new C().x === 'x') ? 'sucsses' : 'fail';
 }
 window.getClass = getClass;
   
@@ -13,8 +12,7 @@ function getStaticClass() {
   class C {
     static x = 'x';
   }
-  document.getElementById("staticClass").innerHTML = 'sucsses';
-  return C.x === 'x';
+  document.getElementById("staticClass").innerHTML = (C.x === 'x') ? 'sucsses' : 'fail';
 }
 window.getStaticClass = getStaticClass;
   
