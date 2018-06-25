@@ -1,0 +1,20 @@
+{
+  "name": "example1",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "server": "rimraf .build/ && babel ./server --out-dir .build/server/",
+    "start": "npm run server && node .build/server/server"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "babel-plugin-transform-class-properties": "^6.24.1",
+    "babel-plugin-transform-do-expressions": "^6.22.0",
+    "rimraf": "^2.6.2"
+  },
+  "dependencies": {
+    "babel-cli": "^6.26.0"
+  }
+}
